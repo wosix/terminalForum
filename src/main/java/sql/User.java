@@ -45,4 +45,5 @@ public class User extends BaseEntity {
         this.phone = phone;
         this.localDate = LocalDate.now();
     }
+
 }

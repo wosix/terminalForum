@@ -1,5 +1,6 @@
 package dao;
 
+import com.sun.jdi.ObjectCollectedException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -36,13 +37,31 @@ public class HibernateUtil<T> {
         return query.getSingleResult();
     }
 
+    public Object findPostById(Long id) {
+        Query query = session.createNamedQuery("findPostById", clazz);
+        query.setParameter(3, id);
+        return query.getSingleResult();
+    }
+
+    public List<Object> findAllComments(Long postId) {
+        return session.createQuery("from Comment where post_id = " + postId, clazz).getResultList();
+    }
 
 
     public void printAll() {
-        System.out.println("Dane z tabeli: ");
+        int i = 1;
         List<Object> entity = findAll();
         for (Object obj : entity) {
-            System.out.println(obj);
+            System.out.println(i++ + " ---------------\n" + obj);
+        }
+    }
+
+    public void printAllComments(Long postId) {
+        int i = 1;
+        List<Object> entity = findAllComments(postId);
+        System.out.println("\nComments:");
+        for (Object obj : entity) {
+            System.out.println(i++ + " ---------------\n" + obj);
         }
     }
 

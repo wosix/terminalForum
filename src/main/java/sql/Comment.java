@@ -39,4 +39,18 @@ public class Comment extends BaseEntity {
         this.user = user;
         this.post = post;
     }
+
+    @Override
+    public String toString() {
+        return  user.getNickname() + ":                              " + localTime.getHour() + ":" + localTime.getMinute() + ":" + localTime.getSecond() + " " + localDate + "\n" +
+                comment;
+
+//                "Comment{" +
+//                "comment='" + comment + '\'' +
+//                ", localDate=" + localDate +
+//                ", localTime=" + localTime +
+//                ", user=" + user +
+//                ", post=" + post +
+//                '}';
+    }
 }
